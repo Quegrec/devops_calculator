@@ -1,4 +1,17 @@
 services:
+  calculator:
+    container_name: calculator
+    restart: unless-stopped
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - monitoring
+    volumes:
+      - ./calculator:/app/calculator
+
   prometheus:
     image: prom/prometheus
     ports:
