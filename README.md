@@ -25,7 +25,7 @@ Une API REST simple de calculatrice (addition, soustraction, multiplication, div
 
 ``` bash
 git clone https://github.com/Quegrec/devops_calculator.git
-cd ton_repo
+cd devops_calculator
 python -m venv venv
 
 ```
