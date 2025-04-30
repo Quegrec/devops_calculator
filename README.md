@@ -1,107 +1,248 @@
-Sure! Here's an example of a README file for the calculator API you provided:
+# 🧮 DevOps Calculator API
 
-# Calculator API
+Une API REST simple de calculatrice (addition, soustraction, multiplication, division), développée avec **FastAPI**, testée avec **pytest**, et automatisée avec **GitHub Actions**.
 
-This is a simple calculator API built with FastAPI in Python. It allows you to perform basic arithmetic operations such as addition, subtraction, multiplication, and division.
+---
+###################################################################
+## ⚙️ Guide d’installation local
+###################################################################
 
-## Getting Started
+``` bash
+git clone https://github.com/Quegrec/devops_calculator.git
+cd ton_repo
+python -m venv venv
 
-To run the calculator API, follow these steps:
+```
+## Pour lancer le projet avec Docker, merci de lancer Docker et d'utiliser la commande suivante :
+---
+Sur Windows :
+``` bash
+.\bin\start.bat
+```
 
-1. Install the required dependencies. You can use pip to install the dependencies listed in the `requirements.txt` file:
+Sur macOS / Linux :
+``` bash
+.\bin\start.sh
+```
+Cela installera les dépendances nécessaires au projet et lancera automatiquement le conteneur Docker.
 
-   ```shell
-   pip install -r requirements.txt
-   ```
+## Autre option disponible pour lancer le projet 
+---
+* Lancer le projet : 
 
-2. Start the server by running the following command:
+``` bash
+Pour exécuter API de calculatrice, suivez les étapes suivantes :
+  1. Installez les dépendances requises. Vous pouvez utiliser `pip` pour installer les
+  dépendances listées dans le fichier `requirements.txt` :
 
-   ```shell
-   uvicorn app:app --reload
-   ```
+  pip install -r requirements.txt
 
-   The server will start running on `http://localhost:8000`.
+  2. Démarrez le serveur en exécutant la commande suivante :
 
-## Endpoints
+  uvicorn app:app --reload
 
-The following endpoints are available in the API:
+  Le serveur sera accessible à l’adresse http://localhost:8000.
 
-### `/`
+```
+* Lancer les tests : 
+``` bash
+pytest
+```
 
-- Method: GET
-- Description: Home endpoint that provides a simple message about the calculator API.
-- Example Response:
+* Déploiement via Docker
+```
+docker build -t devops_calculator .
+docker run -d -p 8000:8000 devops_calculator
+```
 
-  ```json
-  {"result": "This is a simple calculator API"}
-  ```
+---
 
-### `/add`
+## Lancer le projet
 
-- Method: GET
-- Description: Performs addition of two numbers.
-- Query Parameters:
-  - `a` (integer): The first number.
-  - `b` (integer): The second number.
-- Example Request: `http://localhost:8000/add?a=2&b=3`
-- Example Response:
 
-  ```json
-  {"result": 5}
-  ```
+## Points de terminaison (Endpoints)
 
-### `/subtract`
+  Les points de terminaison suivants sont disponibles dans l'API :
+  ### `/`
+  - Méthode : GET
+  - Description : Point de terminaison principal qui retourne un message simple à propos
+  de l’API de calculatrice.
+  - Exemple de réponse :
+  {"result": "Ceci est une API de calculatrice simple"}
 
-- Method: GET
-- Description: Performs subtraction of two numbers.
-- Query Parameters:
-  - `a` (integer): The first number.
-  - `b` (integer): The second number.
-- Example Request: `http://localhost:8000/subtract?a=5&b=2`
-- Example Response:
+    ### `/add`
+    - Méthode : GET
+    - Description : Effectue l’addition de deux nombres.
+    - Paramètres de requête :
+    - `a` (entier) : Le premier nombre.
+    - `b` (entier) : Le second nombre.
+    - Exemple de requête : http://localhost:8000/add?a=2&b=3
+    - Exemple de réponse :
+        {"result": 5}
 
-  ```json
-  {"result": 3}
-  ```
+    ### `/subtract`
+    - Méthode : GET
+    - Description : Effectue la soustraction de deux nombres.
+    - Paramètres de requête :
+    - `a` (entier) : Le premier nombre.
+    - `b` (entier) : Le second nombre.
+    - Exemple de requête : http://localhost:8000/subtract?a=5&b=2
+    - Exemple de réponse :
+        {"result": 3}
 
-### `/multiply`
+    ### `/multiply`
+    - Méthode : GET
+    - Description : Effectue la multiplication de deux nombres.
+    - Paramètres de requête :
+    - `a` (entier) : Le premier nombre.
+    - `b` (entier) : Le second nombre.
+    - Exemple de requête : http://localhost:8000/multiply?a=4&b=5
+    - Exemple de réponse :
+        {"result": 20}
 
-- Method: GET
-- Description: Performs multiplication of two numbers.
-- Query Parameters:
-  - `a` (integer): The first number.
-  - `b` (integer): The second number.
-- Example Request: `http://localhost:8000/multiply?a=4&b=5`
-- Example Response:
+    ### `/divide`
+    - Méthode : GET
+    - Description : Effectue la division de deux nombres.
+    - Paramètres de requête :
+    - `a` (entier) : Le premier nombre.
+    - `b` (entier) : Le second nombre.
+    - Exemple de requête : http://localhost:8000/divide?a=10&b=2
+    - Exemple de réponse :
+        {"result": 5}
 
-  ```json
-  {"result": 20}
-  ```
+    Remarque : Si le second nombre (diviseur) est égal à zéro, une réponse d'erreur sera
+    retournée :
+        {"error": "Impossible de diviser par zéro."}
 
-### `/divide`
 
-- Method: GET
-- Description: Performs division of two numbers.
-- Query Parameters:
-  - `a` (integer): The first number.
-  - `b` (integer): The second number.
-- Example Request: `http://localhost:8000/divide?a=10&b=2`
-- Example Response:
+---
 
-  ```json
-  {"result": 5}
-  ```
+<br><br>
 
-  Note: If the second number (divisor) is zero, an error response will be returned:
+###################################################################
+## 🚀 Fonctionnalités
+###################################################################
+  - Addition, soustraction, multiplication, division via requêtes GET
+  - Gestion des erreurs (ex : division par zéro)
+  - Couverture de tests automatisés avec pytest
+  - Intégration continue via GitHub Actions
+  - Déploiement simple avec Docker
+  - Monitoring prévu via Prometheus & Grafana
 
-  ```json
-  {"error": "Cannot divide by zero."}
-  ```
+---
+<br><br>
 
-## Contributing
+###################################################################
+## 🏗️ Architecture du projet
+###################################################################
+```text 
+📁 Projet
+ ├── 🐍 app.py # API FastAPI principale 
+ ├── 🧪 tests/ │ 
+  └── test_operations.py # Tests unitaires avec pytest 
+ ├── 📦 requirements.txt # Dépendances Python
+ ├── 🐳 Dockerfile # Image Docker pour l'API 
+ ├── 🧩 docker-compose.yml # Orchestration basique de l'API ├── 🔧 .github/ │ 
+   └── workflows/ │ 
+    └── ci.yml # Pipeline CI GitHub Actions 
 
-Contributions to the calculator API are welcome! If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
+├── docker-compose.yml # Orchestration des services de  
 
-## License
+├── 📊 monitoring/ # Stack de monitoring (Prometheus, Grafana, Loki, etc.) 
+    └── prometheus.yml # Configuration de Prometheus │
+    ├── loki-config.yml # Configuration de Loki pour les logs ├── promtail-config.yml # Configuration de Promtail (agent collecteur de logs) 
+    └── nginx/ # (Optionnel) config Nginx à monitorer ou exposer 
+```
 
-This project is licensed under the [MIT License](LICENSE).
+
+
+| Fichier/Dossier                      | Rôle                                                                                          |
+|--------------------------------------|-----------------------------------------------------------------------------------------------|
+| `app.py`                             | Code principal de l'API FastAPI avec les endpoints (`/add`, `/subtract`, etc.).              |
+| `requirements.txt`                   | Dépendances Python nécessaires à l'application.                                               |
+| `Dockerfile`                         | Image Docker de l'application avec installation des dépendances et lancement Uvicorn.         |
+| `docker-compose.yml`                | (À la racine) Orchestration de l’API uniquement.                                              |
+| `monitoring/`                        | Regroupe tous les fichiers de configuration pour la stack d’observabilité.                   |
+| `monitoring/docker-compose.yml`     | Lance Prometheus, Grafana, Loki, Promtail, etc. ensemble.                                     |
+| `monitoring/prometheus.yml`         | Configuration de Prometheus pour le scraping des métriques de l'API.                         |
+| `monitoring/loki-config.yml`        | Configuration de Loki pour la collecte et l’indexation des logs.                             |
+| `monitoring/promtail-config.yml`    | Configuration de Promtail pour lire les logs du conteneur et les envoyer à Loki.             |
+| `monitoring/nginx/`                 | Contient la config du reverse proxy ou des métriques exposées pour Nginx (optionnel).        |
+| `tests/`                             | Répertoire contenant les tests unitaires.                                                     |
+| `.github/workflows/ci.yml`          | Pipeline CI/CD avec GitHub Actions (tests automatiques à chaque push/PR).                    |
+   
+
+
+---
+
+<br><br>
+###################################################################
+## ⚙️ Choix techniques
+###################################################################
+
+| Technologie        | Rôle dans le projet                                                              | Raisons du choix                                                                      |
+|--------------------|----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| **FastAPI**        | Framework web principal pour construire l’API                                   | Très rapide, asynchrone, supporte OpenAPI/Swagger automatiquement, facile à utiliser |
+| **Uvicorn**        | Serveur ASGI utilisé pour exécuter FastAPI                                       | Léger, rapide et conçu pour les applications asynchrones                             |
+| **pytest**         | Framework de test pour vérifier les fonctionnalités                              | Facile à écrire, lisible, très répandu dans la communauté Python                     |
+| **GitHub Actions** | Intégration continue (CI) pour lancer automatiquement les tests à chaque push/PR | Gratuit, intégré à GitHub, rapide à configurer pour les projets open source          |
+| **Docker**         | Conteneurise l'application pour assurer la portabilité                           | Permet de déployer le projet de façon uniforme sur tout environnement                |
+| **Docker Compose** | Orchestration locale des conteneurs (API, services futurs)                       | Simplifie le lancement multi-services (utile pour Prometheus, Grafana, etc.)         |
+| **Prometheus**     | Monitoring des métriques API (latence, erreurs, etc.)                            | Collecte efficace de métriques via HTTP, très utilisé dans les systèmes DevOps       |
+| **Grafana**        | Visualisation graphique des métriques Prometheus                                 | Interface puissante pour dashboards temps réel                                       |
+
+
+<br><br>
+###################################################################
+## ⚙️ Schémas d'architecture
+###################################################################
+
+
+![Texte alternatif](images/img2.png)
+
+
+<br><br>
+
+###################################################################
+# BONUS
+###################################################################
+## Qualité de code : SonarQube, linters, formatters
+
+| Outil            | Rôle                                                          | Commande (exemple)                      |
+|------------------|---------------------------------------------------------------|------------------------------------------|
+| **SonarQube**    | Analyse de qualité de code : détection de bugs, duplications, complexité, etc. | Intégration possible via GitHub Actions ou Docker |
+| **Flake8**       | Linter Python : signale les erreurs de style (PEP8), variables inutilisées, etc. | `flake8 app.py tests/`                  |
+| **Black**        | Formatter Python automatique pour uniformiser le style        | `black app.py tests/`                   |
+| **isort**        | Trie automatiquement les imports Python                       | `isort app.py tests/`                   |
+| **mypy** (optionnel) | Vérification de types statiques si annotations sont utilisées | `mypy app.py`                        |
+
+---
+
+### Installation
+
+
+``` bash
+pip install flake8 black isort
+
+```
+- Formatage et vérification rapide:
+    # Vérifie les erreurs de style
+    flake8 app.py tests/
+
+    # Reformate automatiquement le code
+    black app.py tests/
+    isort app.py tests/
+
+![Texte alternatif](images/img1.png)
+
+
+## Tests avancés : Tests d'intégration, E2E, tests de charge
+```text
+tests/
+├── test_operations.py             ✅ Tests unitaires (ton fichier actuel)
+├── integration/
+│   └── test_sequence_operations.py ✅ Tests enchaînés (add → divide)
+├── e2e/
+│   └── test_end_to_end.py         ✅ Requêtes httpx sur serveur live
+
+```
