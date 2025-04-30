@@ -3,6 +3,22 @@
 Une API REST simple de calculatrice (addition, soustraction, multiplication, division), développée avec **FastAPI**, testée avec **pytest**, et automatisée avec **GitHub Actions**.
 
 ---
+
+# Sommaire
+
+1. [Guide d'installation local](#guide-dinstallation-local)
+2. [Lancer le projet](#lancer-le-projet)
+   1. [Docker](#pour-lancer-le-projet-avec-docker)
+   2. [Autre option disponible pour lancer le projet](#autre-option-disponible-pour-lancer-le-projet)
+3. [Points de terminaison (Endpoints)](#points-de-terminaison-endpoints)
+4. [Fonctionnalites](#fonctionnalites)
+5. [Architecture du projet](#architecture-du-projet)
+6. [Choix techniques](#choix-techniques)
+7. [Schemas d'architecture](#schemas-darchitecture)
+8. [Bonus](#bonus)
+   1. [Qualite de code : SonarQube, linters, formatters](#qualite-de-code-sonarqube-linters-formatters)
+   2. [Tests avances : Tests d'integration, E2E, tests de charge](#tests-avances-tests-dintegration-e2e-tests-de-charge)
+
 ###################################################################
 ## ⚙️ Guide d’installation local
 ###################################################################
