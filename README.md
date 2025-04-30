@@ -1,6 +1,11 @@
-Pour lancer le projet, merci de lancer docker et d'utiliser la commande 
+Pour lancer le projet, merci de lancer docker et d'utiliser la commande suivante:
+  Si vous êtes sur Windows 
    ```shell
-   .\start.bat
+   .\bin\start.bat
+   ```
+   Si vous êtes sur macOS / Linux
+   ```shell
+   .\bin\start.sh
    ```
 Cela installera les dépendances nécessaires au projet et lancera automatiquement le conteneur docker.
 
