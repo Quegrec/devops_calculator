@@ -1,4 +1,8 @@
-Sure! Here's an example of a README file for the calculator API you provided:
+Pour lancer le projet, merci de lancer docker et d'utiliser la commande 
+   ```shell
+   .\start.bat
+   ```
+Cela installera les dépendances nécessaires au projet et lancera automatiquement le conteneur docker.
 
 # Calculator API
 
