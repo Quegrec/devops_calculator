@@ -73,7 +73,7 @@ docker run -d -p 8000:8000 devops_calculator
 
 ---
 
-## Lancer le projet
+
 
 
 ## Points de terminaison (Endpoints)
