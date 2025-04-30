@@ -1,6 +1,6 @@
 # 🧮 DevOps Calculator API
 
-Une API REST simple de calculatrice (addition, soustraction, multiplication, division), développée avec **FastAPI**, testée avec **pytest**, et automatisée avec **GitHub Actions**.
+Ce projet est une API REST simple de calculatrice (addition, soustraction, multiplication, division), développée avec FastAPI. L’application intègre tout un développement DevOps en utilisant plusieurs outils et bonnes pratiques modernes. Le code est testé de manière automatisée avec pytest, garantissant sa qualité et sa stabilité. L’intégration continue (CI) est configurée via GitHub Actions, permettant de lancer les tests automatiquement à chaque modification du code. Pour la portabilité et la facilité de déploiement, l'API est conteneurisée avec Docker. De plus, une stack de monitoring avec Prometheus et Grafana a été mise en place pour surveiller les performances de l’API. Ce projet reflète une approche DevOps complète, allant de l'écriture du code à son déploiement et son monitoring en production.
 
 ---
 
