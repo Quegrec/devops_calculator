@@ -81,7 +81,7 @@ services:
     image: grafana/promtail:latest
     container_name: promtail
     volumes:
-      - ./nginx_logs:/var/log/nginx
+      - ./nginx/log:/var/log/nginx
       - ./promtail-config.yml:/etc/promtail/config.yml
     command: -config.file=/etc/promtail/config.yml
     networks:
