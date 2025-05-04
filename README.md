@@ -15,7 +15,10 @@ Ce projet est une API REST simple de calculatrice (addition, soustraction, multi
 5. [Architecture du projet](#architecture-du-projet)
 6. [Choix techniques](#choix-techniques)
 7. [Schemas d'architecture](#schemas-darchitecture)
-8. [Bonus](#bonus)
+8. [Monitoring de l'application](#monitoring-de-lapplication)
+   1. [Les outils utilisés](#outils-utilises)
+   2. [Les dashboards disponibles sur Grafana](#dashboards-grafana-disponibles)
+10. [Bonus](#bonus)
    1. [Qualite de code : SonarQube, linters, formatters](#qualite-de-code-sonarqube-linters-formatters)
    2. [Tests avances : Tests d'integration, E2E, tests de charge](#tests-avances-tests-dintegration-e2e-tests-de-charge)
 
@@ -29,17 +32,24 @@ cd devops_calculator
 python -m venv venv
 
 ```
-## Pour lancer le projet avec Docker, merci de lancer Docker et d'utiliser la commande suivante :
+## Pour lancer le projet, merci de lancer Docker et d'utiliser la commande suivante dans votre terminal:
 ---
-Sur Windows :
+``` bash
+docker network create monitoring
+```
+
+### Vous devrez ensuite entrer une de ces commandes en fonction de votre OS:
+---
+Pour macOS / Linux :
+``` bash
+.\bin\start.sh
+```
+
+Pour Windows :
 ``` bash
 .\bin\start.bat
 ```
 
-Sur macOS / Linux :
-``` bash
-.\bin\start.sh
-```
 Cela installera les dépendances nécessaires au projet et lancera automatiquement le conteneur Docker.
 
 ## Autre option disponible pour lancer le projet 
@@ -216,6 +226,44 @@ docker run -d -p 8000:8000 devops_calculator
 
 ![Texte alternatif](images/img2.png)
 
+
+Voici une **section complète sur le monitoring**, prête à être collée **à la fin de ton `README.md`**. Elle reflète précisément ta stack actuelle, incluant les dashboards Grafana que tu as mentionnés :
+
+---
+
+<br><br>
+
+\###################################################################
+
+## 📡 Monitoring de l'application
+
+\###################################################################
+
+L'application est monitorée à l'aide d'une stack complète d'observabilité intégrée via Docker Compose. Cela permet d'assurer le suivi en temps réel des **métriques techniques**, de la **santé système**, et des **logs d’accès applicatifs**.
+
+### 🔍 Outils utilisés
+
+| Outil              | Rôle                                                                 |
+| ------------------ | -------------------------------------------------------------------- |
+| **Prometheus**     | Scrape les métriques d’application et système (API, Nginx, etc.).    |
+| **Grafana**        | Visualisation centralisée des métriques et dashboards personnalisés. |
+| **Node Exporter**  | Exporte les métriques système (CPU, mémoire, disque, etc.).          |
+| **Nginx Exporter** | Exporte les métriques HTTP du reverse proxy Nginx.                   |
+| **Loki**           | Stockage et indexation des logs.                                     |
+| **Promtail**       | Collecte les logs Nginx et les transmet à Loki.                      |
+
+### 📊 Dashboards Grafana disponibles
+
+Accédez à Grafana : [http://localhost:3000](http://localhost:3000)
+Identifiants par défaut : `admin` / `admin`
+
+Voici les dashboards prédéfinis inclus dans la stack :
+
+* 🟢 **Logs / App** : visualisation en temps réel des logs d’accès Nginx de l’application via **Loki**.
+* 📈 **Nginx by nginxinc** : monitoring détaillé du trafic, statut HTTP, latence, connexions actives, etc.
+* 💻 **Node Exporter Full** : surveillance des ressources système (CPU, mémoire, disque, I/O) via **Node Exporter**.
+* 📉 **Prometheus 2.0 Stats** : monitoring de la santé de Prometheus lui-même (taux de scrap, alertes, usage mémoire, etc.).
+---
 
 <br><br>
 
